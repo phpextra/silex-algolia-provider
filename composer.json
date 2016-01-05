@@ -1,0 +1,30 @@
+{
+  "name": "phpextra/silex-algolia-provider",
+  "description": "Algolia Silex service provider",
+  "homepage": "https://github.com/phpextra/silex-algolia-provider",
+  "license": "BSD-3-Clause",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Jacek Kobus",
+      "email": "kobus.jacek@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PHPExtraTest\\": "tests"
+    }
+  },
+  "require": {
+    "php": ">=5.5",
+    "algolia/algoliasearch-client-php": "^1.6"
+  },
+  "require-dev": {
+    "silex/silex": "^1.3"
+  }
+}
