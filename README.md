@@ -26,38 +26,42 @@ You can test the library using `phpunit` by running the following command (assum
 
 ###Service registration:
 
-    $app = new Application();
-    $app->register(new AlgoliaSearchServiceProvider());
-    
-    $app['algolia.application_id'] = 'dummy';
-    $app['algolia.api_key'] = 'dummy';
-    $app['algolia.index.name'] = 'dummy';
-    
-    /* ... */
-    
-    $app->get(function(Request $request) use ($app){
-        return new JsonResponse($app['algolia.index']->search($request->get('q')));
-    });
+```php
+$app = new Application();
+$app->register(new AlgoliaSearchServiceProvider());
+
+$app['algolia.application_id'] = 'dummy';
+$app['algolia.api_key'] = 'dummy';
+$app['algolia.index.name'] = 'dummy';
+
+/* ... */
+
+$app->get(function(Request $request) use ($app){
+    return new JsonResponse($app['algolia.index']->search($request->get('q')));
+});
+```
 
 ###Using provided trait:
 
-    class MyApplication extends Application 
+```php
+class MyApplication extends Application 
+{
+    use AlgoliaSearchTrait;
+    
+    public function __construct()
     {
-        use AlgoliaSearchTrait;
-        
-        public function __construct()
-        {
-            $this->register(new AlgoliaSearchServiceProvider());
-            parent::__construct();
-        }
+        $this->register(new AlgoliaSearchServiceProvider());
+        parent::__construct();
     }
-    
-    $app = new MyApplication();
-    
-    /* ... */
-    
-    $app->algolia(); // gives you access to Algolia Client instance
-    $app->search('query'); // performs search
+}
+
+$app = new MyApplication();
+
+/* ... */
+
+$app->algolia(); // gives you access to Algolia Client instance
+$app->search('query'); // performs search
+```
 
 ##Useful links
 
